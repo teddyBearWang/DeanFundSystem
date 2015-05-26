@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "LoginViewController.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -16,6 +16,23 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+  
+    
+    LoginViewController *main = [[LoginViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
+    if (IOS7_OR_LATER) {
+        nav.navigationBar.barTintColor = [[UIColor colorWithRed:27/255.0 green:146/255.0 blue:245/255.0 alpha:1.0f] colorWithAlphaComponent:0.8f];
+        //修改backItem 的颜色
+        nav.navigationBar.tintColor = [UIColor whiteColor];
+        NSDictionary *dic = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+        //设置title的颜色
+        nav.navigationBar.titleTextAttributes = dic;
+    }else{
+        nav.navigationBar.TintColor = [[UIColor colorWithRed:27/255.0 green:146/255.0 blue:245/255.0 alpha:1.0f] colorWithAlphaComponent:0.8f];
+          [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    }
+    self.window.rootViewController = nav;
+    
     return YES;
 }
 
